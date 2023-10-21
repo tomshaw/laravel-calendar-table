@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('date_dimension', function (Blueprint $table) {
+        $tableName = config('calendar-table.table_name');
+        
+        Schema::create($tableName, function (Blueprint $table) {
             $table->date('date')->primary();
             $table->integer('day');
             $table->integer('month');
@@ -22,7 +24,7 @@ return new class extends Migration
             $table->boolean('is_holiday');
         });
 
-        Schema::table('date_dimension', function (Blueprint $table) {
+        Schema::table($tableName, function (Blueprint $table) {
             $table->index('date');
         });
     }
@@ -32,6 +34,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('date_dimension');
+        $tableName = config('calendar-table.table_name');
+        
+        Schema::dropIfExists($tableName);
     }
 };

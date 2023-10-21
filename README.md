@@ -1,9 +1,9 @@
+# Laravel Calendar Table 📈 📊
+
 ![issues](https://img.shields.io/github/issues/tomshaw/laravel-calendar-table?style=flat&logo=appveyor)
 ![forks](https://img.shields.io/github/forks/tomshaw/laravel-calendar-table?style=flat&logo=appveyor)
 ![stars](https://img.shields.io/github/stars/tomshaw/laravel-calendar-table?style=flat&logo=appveyor)
 [![GitHub license](https://img.shields.io/github/license/tomshaw/laravel-calendar-table)](https://github.com/tomshaw/laravel-calendar-table/blob/master/LICENSE)
-
-# Laravel Calendar Table
 
 A **calendar table**, also known as a **date dimension table**, is a table in a database that is designed to help with date-related queries and reporting. It contains a row for each date within a certain range, often many years into the past and future. Each row contains various fields about the date, such as the day, month, year, quarter, day of the week, is it a weekend or a weekday, is it a holiday, etc.
 
@@ -19,13 +19,19 @@ The usefulness of a calendar table in database reporting comes from its ability 
 
 5. **Handling Missing Dates**: If your data has missing dates, those gaps can cause problems in reporting. A calendar table can help ensure continuity in your reports.
 
-In summary, a calendar table is an extremely useful tool for anyone who frequently works with dates in their database reporting.
+In summary, a calendar table is an extremely useful tool for anyone who frequently works with dates in their database reporting. Happy Reporting. 😊
 
 ## Installation
 Require the package with composer using the following command:
 
 ```
 composer require tomshaw/laravel-calendar-table --dev
+```
+
+Publish configuration files if you wish to change the default table name **date_dimension**.
+
+```
+php artisan vendor:publish --provider="TomShaw\CalendarTable\Providers\CalendarTableServiceProvider" --tag=config
 ```
 
 ## Database Migration

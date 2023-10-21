@@ -34,11 +34,13 @@ class CalendarTableCommand extends Command
 
     public function populateCalendar(mixed $startYear)
     {
+        $tableName = config('calendar-table.table_name');
+
         $startDate = Carbon::createFromDate($startYear, 1, 1);
         $endDate = Carbon::now();
 
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
-            DB::table('date_dimension')->insert([
+            DB::table($tableName)->insert([
                 'date' => $date->toDateString(),
                 'day' => $date->day,
                 'month' => $date->month,
