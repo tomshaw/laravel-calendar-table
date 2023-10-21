@@ -1,0 +1,49 @@
+{
+    "name": "tomshaw/laravel-calendar-table",
+    "description": "A Laravel calendar table database migration and console command.",
+    "keywords": [
+        "laravel",
+        "database",
+        "reporting",
+        "calendar table",
+        "date dimension table"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tom Shaw",
+            "email": "tomshaw@tomshaw.us",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "geoffreyrose/us-holidays": "^2.5"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "TomShaw\\CalendarTable\\": "src"
+        }
+    },
+    "scripts" : {
+        "format": "vendor/bin/pint --config pint.json"
+    },
+    "suggest": {
+        "geoffreyrose/us-holidays": "Extends Carbon and adds support for 42 US holidays."
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TomShaw\\CalendarTable\\Providers\\CalendarTableServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability" : "dev",
+    "prefer-stable" : true,
+    "config": {
+        "sort-packages": true
+    }
+}
