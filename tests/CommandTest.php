@@ -33,7 +33,7 @@ class CommandTest extends TestCase
         // Act: Retrieve the data from the database
         $result = DB::table($this->tableName)->count();
 
-        // Assert: Check if the result is not null
+        // Assert: Check if the result count is correct
         $this->assertEquals(3219, $result);
     }
 
