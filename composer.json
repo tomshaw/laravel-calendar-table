@@ -3,10 +3,9 @@
     "description": "A Laravel calendar table database migration and console command.",
     "keywords": [
         "laravel",
-        "database",
-        "reporting",
-        "calendar table",
-        "date dimension table"
+        "console",
+        "artisan",
+        "commands"
     ],
     "license": "MIT",
     "authors": [
@@ -18,18 +17,27 @@
     ],
     "require": {
         "php": "^8.1",
-        "geoffreyrose/us-holidays": "^2.5",
-        "nesbot/carbon": "^2.71"
+        "geoffreyrose/us-holidays": "^2.5"
     },
     "require-dev": {
-        "laravel/pint": "^1.13"
+        "laravel/pint": "^1.13",
+        "nunomaduro/larastan": "^2.6",
+        "orchestra/testbench": "^8.14",
+        "phpstan/phpstan": "^1.10"
     },
     "autoload": {
         "psr-4": {
             "TomShaw\\CalendarTable\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "TomShaw\\CalendarTable\\Tests\\": "tests"
+        }
+    },
     "scripts" : {
+        "analyse" : "vendor/bin/phpstan analyse",
+        "test" : "vendor/bin/phpunit",
         "format": "vendor/bin/pint --config pint.json"
     },
     "suggest": {

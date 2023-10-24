@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         $tableName = config('calendar-table.table_name');
-        
+
         Schema::create($tableName, function (Blueprint $table) {
             $table->date('date')->primary();
             $table->integer('day');
@@ -35,7 +35,7 @@ return new class extends Migration
     public function down(): void
     {
         $tableName = config('calendar-table.table_name');
-        
+
         Schema::dropIfExists($tableName);
     }
 };
