@@ -1,5 +1,6 @@
 # Laravel Calendar Table 📈 📊
 
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/tomshaw/laravel-calendar-table/run-tests.yml?branch=master&style=flat-square&label=tests)
 ![issues](https://img.shields.io/github/issues/tomshaw/laravel-calendar-table?style=flat&logo=appveyor)
 ![forks](https://img.shields.io/github/forks/tomshaw/laravel-calendar-table?style=flat&logo=appveyor)
 ![stars](https://img.shields.io/github/stars/tomshaw/laravel-calendar-table?style=flat&logo=appveyor)
