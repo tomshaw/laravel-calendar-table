@@ -13,7 +13,7 @@ class CalendarTableCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'calendar:table {year=2020}';
+    protected $signature = 'calendar:table {--year=}';
 
     /**
      * The console command description.
@@ -44,13 +44,22 @@ class CalendarTableCommand extends Command
      */
     public function handle()
     {
-        $startYear = $this->argument('year');
+        $startYear = $this->option('year');
+
+        if (! $startYear) {
+            $startYear = $this->ask('Please enter a starting year');
+        }
+
         $currentYear = Carbon::now()->year;
 
         if ($this->count()) {
-            $this->error('Records found. Please truncate table before proceeding.');
+            $this->error('Calendar table has already been filled.');
 
-            return;
+            if ($this->confirm('Do you wish to truncate the table')) {
+                $this->truncate();
+            } else {
+                return;
+            }
         }
 
         $this->insert($startYear);
@@ -58,6 +67,19 @@ class CalendarTableCommand extends Command
         $count = $this->count();
 
         $this->info("Successfully added {$count} records starting from {$startYear} to {$currentYear}.");
+    }
+
+    /**
+     * Truncate the table.
+     *
+     * This method will truncate the table.
+     *
+     *
+     * @throws \Illuminate\Database\QueryException If there is an error with the query.
+     */
+    public function truncate(): void
+    {
+        DB::table($this->tableName)->truncate();
     }
 
     /**

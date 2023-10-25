@@ -7,9 +7,19 @@ use Illuminate\Support\Facades\DB;
 
 class CommandTest extends TestCase
 {
+    protected ?string $tableName;
+
+    protected ?string $consoleCommand;
+
+    protected int $startYear = 2020;
+
     public function setup(): void
     {
         parent::setUp();
+
+        $this->tableName = config('calendar-table.table_name');
+
+        $this->consoleCommand = "calendar:table --year={$this->startYear}";
 
         Artisan::call('migrate');
     }
@@ -18,35 +28,35 @@ class CommandTest extends TestCase
     public function it_runs_the_calendar_table_command()
     {
         // Arrange: Insert data into the database
-        $exitCode = Artisan::call('calendar:table 2015');
+        $exitCode = Artisan::call($this->consoleCommand);
 
         // Assert: Check if the command successfully run
         $this->assertEquals(0, $exitCode);
     }
 
     /** @test */
-    public function it_checks_if_correct_number_of_records_exist_in_database()
+    public function it_checks_if_result_count_is_correct_in_database()
     {
         // Arrange: Insert data into the database
-        Artisan::call('calendar:table 2015');
+        Artisan::call($this->consoleCommand);
 
         // Act: Retrieve the data from the database
         $result = DB::table($this->tableName)->count();
 
         // Assert: Check if the result count is correct
-        $this->assertEquals(3219, $result);
+        $this->assertEquals(1394, $result);
     }
 
     /** @test */
-    public function it_checks_if_there_are_count_four_seasons_vivaldi()
+    public function it_checks_if_result_count_year_has_four_quarters_in_database()
     {
         // Arrange: Insert data into the database
-        Artisan::call('calendar:table 2015');
+        Artisan::call($this->consoleCommand);
 
         // Act: Retrieve the grouped quarters for the year from the database
         $result = DB::table($this->tableName)
             ->select('quarter', DB::raw('count(*) as total'))
-            ->where('year', 2015)
+            ->where('year', $this->startYear)
             ->groupBy('quarter')
             ->get();
 
