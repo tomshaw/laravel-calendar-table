@@ -117,10 +117,10 @@ class CalendarTableCommand extends Command
     }
 
     /**
-     * Insert dates from the start year to the current date into the table.
+     * Insert dates from start to end year into table.
      *
      * @param  int  $startYear The start year for the date range.
-     * @param  int  $endYear The start year for the date range.
+     * @param  int  $endYear The end year for the date range.
      */
     public function insert(int $startYear, int $endYear)
     {
