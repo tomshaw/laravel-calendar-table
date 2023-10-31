@@ -80,11 +80,17 @@ class CalendarTableCommand extends Command
             }
         }
 
+        $startTime = Carbon::now();
+
         $this->insert($startYear, $endYear);
+
+        $endTime = Carbon::now();
 
         $count = $this->count();
 
-        $this->info("Successfully added {$count} records starting from {$startYear} to {$endYear}.");
+        $executionTime = $endTime->diffInSeconds($startTime);
+
+        $this->info("Added {$count} records starting from {$startYear} to {$endYear} taking {$executionTime} seconds.");
     }
 
     /**
