@@ -67,7 +67,7 @@ class CalendarTableCommand extends Command
         }
 
         if ($startYear > $endYear) {
-            $this->error('Starting period is greater than ending.');
+            $this->error('Starting year is greater than ending.');
         }
 
         if ($this->count()) {
