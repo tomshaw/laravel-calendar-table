@@ -13,7 +13,7 @@ class CalendarTableCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'calendar:table {--year=}';
+    protected $signature = 'calendar:table {--start=} {--end=}';
 
     /**
      * The console command description.
@@ -44,16 +44,34 @@ class CalendarTableCommand extends Command
      */
     public function handle()
     {
-        $startYear = $this->option('year');
+        $startYear = $this->option('start');
+        $endYear = $this->option('end');
 
         if (! $startYear) {
             $startYear = $this->ask('Please enter a starting year');
         }
 
-        $currentYear = Carbon::now()->year;
+        if (! $endYear) {
+            $endYear = Carbon::now()->year;
+        }
+
+        $startYear = (int) $startYear;
+        $endYear = (int) $endYear;
+
+        if (! $this->isValidYear($startYear)) {
+            $this->error('Invalid start year format.');
+        }
+
+        if (! $this->isValidYear($endYear)) {
+            $this->error('Invalid end year format.');
+        }
+
+        if ($startYear > $endYear) {
+            $this->error('Starting period is greater than ending.');
+        }
 
         if ($this->count()) {
-            $this->error('Calendar table has already been filled.');
+            $this->error('Calendar table is not empty.');
 
             if ($this->confirm('Do you wish to truncate the table')) {
                 $this->truncate();
@@ -62,11 +80,11 @@ class CalendarTableCommand extends Command
             }
         }
 
-        $this->insert($startYear);
+        $this->insert($startYear, $endYear);
 
         $count = $this->count();
 
-        $this->info("Successfully added {$count} records starting from {$startYear} to {$currentYear}.");
+        $this->info("Successfully added {$count} records starting from {$startYear} to {$endYear}.");
     }
 
     /**
@@ -95,12 +113,13 @@ class CalendarTableCommand extends Command
     /**
      * Insert dates from the start year to the current date into the table.
      *
-     * @param  string  $startYear The start year for the date range.
+     * @param  int  $startYear The start year for the date range.
+     * @param  int  $endYear The start year for the date range.
      */
-    public function insert(string $startYear)
+    public function insert(int $startYear, int $endYear)
     {
         $startDate = Carbon::createFromDate($startYear, 1, 1);
-        $endDate = Carbon::now();
+        $endDate = Carbon::createFromDate($endYear, 12, 31);
 
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
             DB::table($this->tableName)->insert([
@@ -114,5 +133,31 @@ class CalendarTableCommand extends Command
                 'is_holiday' => $date->isHoliday(),
             ]);
         }
+    }
+
+    /**
+     * Checks if the input is a valid year.
+     *
+     * This function checks if the input is a numeric value and if it falls within the range of 1000 to 9999,
+     * which covers all valid 4-digit years. If both conditions are met, the function returns true;
+     * otherwise, it returns false.
+     *
+     * @param  string  $input The input to be validated.
+     * @return bool Returns true if the input is a valid year, false otherwise.
+     */
+    public function isValidYear($input)
+    {
+        // Check if the input is a numeric value
+        if (is_numeric($input)) {
+            // Convert the input to an integer
+            $year = intval($input);
+
+            // Check if the year is in the valid range
+            if ($year >= 1000 && $year <= 9999) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -19,7 +19,7 @@ class CommandTest extends TestCase
 
         $this->tableName = config('calendar-table.table_name');
 
-        $this->consoleCommand = "calendar:table --year={$this->startYear}";
+        $this->consoleCommand = "calendar:table --start={$this->startYear}";
 
         Artisan::call('migrate');
     }
@@ -44,7 +44,7 @@ class CommandTest extends TestCase
         $result = DB::table($this->tableName)->count();
 
         // Assert: Check if the result count is correct
-        $this->assertEquals(1394, $result);
+        $this->assertEquals(1461, $result);
     }
 
     /** @test */

@@ -45,12 +45,12 @@ php artisan migrate
 
 ## Console Command
 
-Run the console command to populate the calendar table.
+Run the console command to fill the calendar table.
 
-> Note: The console command accepts an optional **starting year** parameter. If none is provided you will be prompted to enter one.  
+> Note: If no **starting year** parameter is provided you will be prompted to enter one. If no **ending year** is provided it will default to the current year. 
 
 ```
-php artisan calendar:table --year=2020
+php artisan calendar:table --start=1990 --end=2030
 ```
 
 ## License
