@@ -8,8 +8,6 @@ use USHolidays\Carbon;
 
 /**
  * Class CalendarTableCommand
- *
- * @package TomShaw\CalendarTable\Commands
  */
 class CalendarTableCommand extends Command
 {
@@ -76,7 +74,7 @@ class CalendarTableCommand extends Command
         }
 
         if ($this->count()) {
-            if ($this->confirm('Do you wish to truncate the table')) {
+            if ($this->confirm('Table is currently filled would you like to run the truncate command')) {
                 $this->truncate();
             } else {
                 return;
