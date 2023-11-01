@@ -117,10 +117,10 @@ class CalendarTableCommand extends Command
     }
 
     /**
-     * Insert dates from start to end year into table.
+     * Insert dates from start year to end year into table.
      *
-     * @param  int  $startYear The start year for the date range.
-     * @param  int  $endYear The end year for the date range.
+     * @param  int  $startYear The start year for the date sequence.
+     * @param  int  $endYear The end year for the date sequence.
      */
     public function insert(int $startYear, int $endYear)
     {
@@ -128,6 +128,10 @@ class CalendarTableCommand extends Command
         $endDate = Carbon::createFromDate($endYear, 12, 31);
 
         for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
+
+            $season = $this->determineSeason($date);
+            $fiscalYearQuarter = $this->fiscalYearQuarter($date);
+
             DB::table($this->tableName)->insert([
                 'date' => $date->toDateString(),
                 'day' => $date->day,
@@ -137,6 +141,12 @@ class CalendarTableCommand extends Command
                 'day_of_week' => $date->dayOfWeek,
                 'is_weekend' => $date->isWeekend(),
                 'is_holiday' => $date->isHoliday(),
+                'day_of_year' => $date->dayOfYear,
+                'week_of_year' => $date->weekOfYear,
+                'is_leap_year' => $date->isLeapYear(),
+                'season' => $season,
+                'fiscal_year' => $fiscalYearQuarter['fiscal_year'],
+                'fiscal_quarter' => $fiscalYearQuarter['fiscal_quarter'],
             ]);
         }
     }
@@ -165,5 +175,44 @@ class CalendarTableCommand extends Command
         }
 
         return false;
+    }
+
+    /**
+     * Determines the season for a given date.
+     *
+     *
+     * @throws \Exception If the 'seasons' configuration is not set.
+     */
+    public function determineSeason($date): string
+    {
+        // Determine the season
+        return collect(config('calendar-table.seasons'))->filter(function ($startMonth) use ($date) {
+            return $date->month >= $startMonth;
+        })->keys()->last() ?? 'Winter';
+    }
+
+    /**
+     * Calculates the fiscal year and quarter for a given date.
+     *
+     *
+     * @throws \Exception If the 'fiscal_year_start_month' configuration is not set.
+     */
+    public function fiscalYearQuarter($date): array
+    {
+        $fiscalYear = $date->year;
+        $fiscalQuarter = ceil($date->month / 3);
+
+        $fiscalYearStartMonth = config('calendar-table.fiscal_year_start_month');
+        if ($date->month >= $fiscalYearStartMonth) {
+            $fiscalYear++;
+            $fiscalQuarter = ceil(($date->month - $fiscalYearStartMonth + 1) / 3);
+        } else {
+            $fiscalQuarter = ceil(($date->month + 12 - $fiscalYearStartMonth + 1) / 3);
+        }
+
+        return [
+            'fiscal_year' => $fiscalYear,
+            'fiscal_quarter' => $fiscalQuarter,
+        ];
     }
 }

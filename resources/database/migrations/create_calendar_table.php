@@ -22,6 +22,12 @@ return new class extends Migration
             $table->integer('day_of_week');
             $table->boolean('is_weekend');
             $table->boolean('is_holiday');
+            $table->integer('day_of_year')->nullable();
+            $table->integer('week_of_year')->nullable();
+            $table->boolean('is_leap_year')->nullable();
+            $table->string('season')->nullable();
+            $table->integer('fiscal_year')->nullable();
+            $table->integer('fiscal_quarter')->nullable();
         });
 
         Schema::table($tableName, function (Blueprint $table) {
