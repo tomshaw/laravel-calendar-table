@@ -26,7 +26,7 @@ In summary, a calendar table is an extremely useful tool for anyone who frequent
 Require the package with composer using the following command:
 
 ```
-composer require tomshaw/laravel-calendar-table --dev
+composer require tomshaw/laravel-calendar-table
 ```
 
 Publish configuration files if you wish to change the default table name **date_dimension**.
