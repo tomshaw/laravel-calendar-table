@@ -6,6 +6,11 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use USHolidays\Carbon;
 
+/**
+ * Class CalendarTableCommand
+ *
+ * @package TomShaw\CalendarTable\Commands
+ */
 class CalendarTableCommand extends Command
 {
     /**
