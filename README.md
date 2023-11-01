@@ -29,7 +29,7 @@ Require the package with composer using the following command:
 composer require tomshaw/laravel-calendar-table
 ```
 
-Publish configuration files if you wish to change the default table name **date_dimension**.
+Publish the configuration file if you wish to change the default table name, season start months or fiscal_year_start_month.
 
 ```
 php artisan vendor:publish --provider="TomShaw\CalendarTable\Providers\CalendarTableServiceProvider" --tag=config
