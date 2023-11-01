@@ -20,7 +20,7 @@ class CalendarTableCommand extends Command
      *
      * @var string
      */
-    protected $description = 'A Laravel command to populate calendar table dates.';
+    protected $description = 'A Laravel command to sequence calendar table dates.';
 
     /**
      * The database table name.
@@ -71,8 +71,6 @@ class CalendarTableCommand extends Command
         }
 
         if ($this->count()) {
-            $this->error('Calendar table is not empty.');
-
             if ($this->confirm('Do you wish to truncate the table')) {
                 $this->truncate();
             } else {
@@ -84,9 +82,9 @@ class CalendarTableCommand extends Command
 
         $this->insert($startYear, $endYear);
 
-        $endTime = Carbon::now();
-
         $count = $this->count();
+
+        $endTime = Carbon::now();
 
         $executionTime = $endTime->diffInSeconds($startTime);
 

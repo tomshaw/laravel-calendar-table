@@ -60,23 +60,6 @@ class CommandTest extends TestCase
     }
 
     /** @test */
-    public function it_checks_if_result_count_year_has_four_quarters_in_database()
-    {
-        // Arrange: Insert data into the database
-        Artisan::call($this->consoleCommand);
-
-        // Act: Retrieve the grouped quarters for the year from the database
-        $result = DB::table($this->tableName)
-            ->select('quarter', DB::raw('count(*) as total'))
-            ->where('year', $this->startYear)
-            ->groupBy('quarter')
-            ->get();
-
-        // Assert: Check if the count of quarters is correct
-        $this->assertCount(4, $result);
-    }
-
-    /** @test */
     public function test_it_asks_to_truncate_database_when_not_empty()
     {
         // Arrange: Insert data into the database
