@@ -47,7 +47,7 @@ php artisan migrate
 
 Run the console command to fill the calendar table.
 
-> Note: If no **starting year** parameter is provided you will be prompted to enter one. If no **ending year** is provided it will default to the current year. 
+> Note: The calendar table command accepts two optional parameters. If no **start** year is specified you will be prompted to enter one. If no **end** year is specified the current year will be used.
 
 ```
 php artisan calendar:table --start=1990 --end=2030
