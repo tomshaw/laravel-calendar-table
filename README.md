@@ -20,7 +20,7 @@ The usefulness of a calendar table in database reporting comes from its ability 
 
 5. **Handling Missing Dates**: If your data has missing dates, those gaps can cause problems in reporting. A calendar table can help ensure continuity in your reports.
 
-In summary, a calendar table is an extremely useful tool for anyone who frequently works with dates in their database reporting. Happy Reporting. 😊
+In summary, a calendar table is an extremely useful tool for anyone who frequently works with dates in their database. Happy Reporting. 😊
 
 ## Installation
 Require the package with composer using the following command:
