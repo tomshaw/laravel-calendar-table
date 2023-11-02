@@ -25,10 +25,10 @@ class CommandTest extends TestCase
         // Get the current date
         $currentDate = Carbon::now();
 
-        // Subtract 5 years from the current date
+        // Subtract 1 year from current date
         $this->startYear = (int) $currentDate->copy()->subYears(1)->toDateString();
 
-        // Add 5 years to the current date
+        // Add 1 year to current date
         $this->endYear = (int) $currentDate->copy()->addYears(1)->toDateString();
 
         $this->consoleCommand = "calendar:table --start={$this->startYear} --end={$this->endYear}";
@@ -47,7 +47,7 @@ class CommandTest extends TestCase
     }
 
     /** @test */
-    public function it_checks_if_result_count_is_correct_in_database()
+    public function it_checks_if_database_is_correctly_filled()
     {
         // Arrange: Insert data into the database
         Artisan::call($this->consoleCommand);
@@ -60,7 +60,7 @@ class CommandTest extends TestCase
     }
 
     /** @test */
-    public function test_it_asks_to_truncate_database_when_not_empty()
+    public function test_it_asks_to_truncate_database_when_filled()
     {
         // Arrange: Insert data into the database
         Artisan::call($this->consoleCommand);
