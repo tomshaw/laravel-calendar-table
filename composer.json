@@ -5,7 +5,7 @@
         "laravel",
         "console",
         "artisan",
-        "commands"
+        "command"
     ],
     "license": "MIT",
     "authors": [
