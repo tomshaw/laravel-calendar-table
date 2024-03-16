@@ -36,7 +36,6 @@ class CommandTest extends TestCase
         Artisan::call('migrate');
     }
 
-    /** @test */
     public function it_runs_the_calendar_table_command()
     {
         // Arrange: Insert data into the database
@@ -46,7 +45,6 @@ class CommandTest extends TestCase
         $this->assertEquals(0, $exitCode);
     }
 
-    /** @test */
     public function it_checks_if_database_is_correctly_filled()
     {
         // Arrange: Insert data into the database
@@ -59,7 +57,6 @@ class CommandTest extends TestCase
         $this->assertEquals(1096, $result);
     }
 
-    /** @test */
     public function test_it_asks_to_truncate_database_when_filled()
     {
         // Arrange: Insert data into the database

@@ -45,7 +45,7 @@ class CalendarTableCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $startYear = $this->option('start');
         $endYear = $this->option('end');
@@ -120,10 +120,10 @@ class CalendarTableCommand extends Command
     /**
      * Insert dates from start year to end year into table.
      *
-     * @param  int  $startYear The start year for the date sequence.
-     * @param  int  $endYear The end year for the date sequence.
+     * @param  int  $startYear  The start year for the date sequence.
+     * @param  int  $endYear  The end year for the date sequence.
      */
-    public function insert(int $startYear, int $endYear)
+    public function insert(int $startYear, int $endYear): void
     {
         $startDate = Carbon::createFromDate($startYear, 1, 1);
         $endDate = Carbon::createFromDate($endYear, 12, 31);
@@ -159,10 +159,10 @@ class CalendarTableCommand extends Command
      * which covers all valid 4-digit years. If both conditions are met, the function returns true;
      * otherwise, it returns false.
      *
-     * @param  string  $input The input to be validated.
+     * @param  int  $input  The input to be validated.
      * @return bool Returns true if the input is a valid year, false otherwise.
      */
-    public function isValidYear($input)
+    public function isValidYear(int $input)
     {
         // Check if the input is a numeric value
         if (is_numeric($input)) {
@@ -184,7 +184,7 @@ class CalendarTableCommand extends Command
      *
      * @throws \Exception If the 'seasons' configuration is not set.
      */
-    public function determineSeason($date): string
+    public function determineSeason(Carbon $date): string
     {
         // Determine the season
         return collect(config('calendar-table.seasons'))->filter(function ($startMonth) use ($date) {
@@ -198,7 +198,7 @@ class CalendarTableCommand extends Command
      *
      * @throws \Exception If the 'fiscal_year_start_month' configuration is not set.
      */
-    public function fiscalYearQuarter($date): array
+    public function fiscalYearQuarter(Carbon $date): array
     {
         $fiscalYear = $date->year;
         $fiscalQuarter = ceil($date->month / 3);
