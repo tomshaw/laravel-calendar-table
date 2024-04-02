@@ -39,7 +39,7 @@ class CalendarTableCommand extends Command
     {
         parent::__construct();
 
-        $this->tableName = config('calendar-table.table_name','date_dimension');
+        $this->tableName = config('calendar-table.table_name', 'date_dimension');
     }
 
     /**
@@ -181,22 +181,44 @@ class CalendarTableCommand extends Command
     /**
      * Determines the season for a given date.
      *
+     * This function determines the season for a given date based on the start month of each season.
+     * The function iterates through the seasons array and returns the first season where the start month is less than or equal to the current month.
+     * If no season is found, the function returns 'Winter' as the default season.
      *
-     * @throws \Exception If the 'seasons' configuration is not set.
+     * @param  Carbon  $date  The date for which the season is to be determined.
+     * @return string The season for the given date.
      */
     public function determineSeason(Carbon $date): string
     {
-        // Determine the season
-        return collect(config('calendar-table.seasons'), [])->filter(function ($startMonth) use ($date) {
-            return $date->month >= $startMonth;
-        })->keys()->last() ?? 'Winter';
+        $seasons = config('calendar-table.seasons', [
+            'Spring' => 3,
+            'Summer' => 6,
+            'Autumn' => 9,
+            'Winter' => 12,
+        ]);
+
+        // Reverse the seasons array so we can find the first season where the start month is less than or equal to the current month
+        $seasons = array_reverse($seasons, true);
+
+        foreach ($seasons as $season => $startMonth) {
+            if ($date->month >= $startMonth) {
+                return $season;
+            }
+        }
+
+        return 'Winter';
     }
 
     /**
-     * Calculates the fiscal year and quarter for a given date.
+     * Determines the fiscal year and quarter for a given date.
      *
+     * This function determines the fiscal year and quarter for a given date based on the start month of the fiscal year.
+     * The function calculates the fiscal year based on the month of the date and the start month of the fiscal year.
+     * If the month of the date is greater than or equal to the start month of the fiscal year, the fiscal year is incremented by 1.
+     * The fiscal quarter is calculated based on the month of the date and the start month of the fiscal year.
      *
-     * @throws \Exception If the 'fiscal_year_start_month' configuration is not set.
+     * @param  Carbon  $date  The date for which the fiscal year and quarter are to be determined.
+     * @return array An array containing the fiscal year and quarter for the given date.
      */
     public function fiscalYearQuarter(Carbon $date): array
     {
