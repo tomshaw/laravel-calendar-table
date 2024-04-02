@@ -39,7 +39,7 @@ class CalendarTableCommand extends Command
     {
         parent::__construct();
 
-        $this->tableName = config('calendar-table.table_name');
+        $this->tableName = config('calendar-table.table_name','date_dimension');
     }
 
     /**
@@ -187,7 +187,7 @@ class CalendarTableCommand extends Command
     public function determineSeason(Carbon $date): string
     {
         // Determine the season
-        return collect(config('calendar-table.seasons'))->filter(function ($startMonth) use ($date) {
+        return collect(config('calendar-table.seasons'), [])->filter(function ($startMonth) use ($date) {
             return $date->month >= $startMonth;
         })->keys()->last() ?? 'Winter';
     }
@@ -203,7 +203,7 @@ class CalendarTableCommand extends Command
         $fiscalYear = $date->year;
         $fiscalQuarter = ceil($date->month / 3);
 
-        $fiscalYearStartMonth = config('calendar-table.fiscal_year_start_month');
+        $fiscalYearStartMonth = config('calendar-table.fiscal_year_start_month', 10);
         if ($date->month >= $fiscalYearStartMonth) {
             $fiscalYear++;
             $fiscalQuarter = ceil(($date->month - $fiscalYearStartMonth + 1) / 3);
