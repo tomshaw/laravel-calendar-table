@@ -64,7 +64,7 @@ class CommandTest extends TestCase
 
         // Arrange: Insert data into the database expect confirmation
         $this->artisan($this->consoleCommand)
-            ->expectsQuestion('Table is currently filled would you like to run the truncate command', 'yes')
+            ->expectsQuestion('Table is currently filled would you like to truncate the table?', 'yes')
             ->assertExitCode(0);
     }
 }

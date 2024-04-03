@@ -26,9 +26,24 @@ class CalendarTableCommand extends Command
     protected $description = 'A Laravel command to sequence calendar table dates.';
 
     /**
-     * The database table name.
+     * The table name to be used.
      */
-    protected string $tableName;
+    protected string $tableName = 'date_dimension';
+
+    /**
+     * The fiscal year start month.
+     */
+    protected int $fiscalYearStartMonth = 10;
+
+    /**
+     * The seasons start month array.
+     */
+    protected array $seasons = [
+        'Spring' => 3,
+        'Summer' => 6,
+        'Autumn' => 9,
+        'Winter' => 12,
+    ];
 
     /**
      * Create a new command instance.
@@ -39,7 +54,7 @@ class CalendarTableCommand extends Command
     {
         parent::__construct();
 
-        $this->tableName = config('calendar-table.table_name', 'date_dimension');
+        $this->tableName = config('calendar-table.table_name', $this->tableName);
     }
 
     /**
@@ -62,19 +77,25 @@ class CalendarTableCommand extends Command
         $endYear = (int) $endYear;
 
         if (! $this->isValidYear($startYear)) {
-            $this->error('Invalid start year format.');
+            $this->error("Invalid start year: {$startYear}");
+
+            return;
         }
 
         if (! $this->isValidYear($endYear)) {
-            $this->error('Invalid end year format.');
+            $this->error("Invalid end year: {$endYear}");
+
+            return;
         }
 
         if ($startYear > $endYear) {
             $this->error('Starting year is greater than ending.');
+
+            return;
         }
 
         if ($this->count()) {
-            if ($this->confirm('Table is currently filled would you like to run the truncate command')) {
+            if ($this->confirm('Table is currently filled would you like to truncate the table?')) {
                 $this->truncate();
             } else {
                 return;
@@ -112,7 +133,7 @@ class CalendarTableCommand extends Command
      *
      * @return int The number of records in the table.
      */
-    public function count()
+    public function count(): int
     {
         return DB::table($this->tableName)->count();
     }
@@ -153,52 +174,35 @@ class CalendarTableCommand extends Command
     }
 
     /**
-     * Checks if the input is a valid year.
+     * Check if the year is valid.
      *
-     * This function checks if the input is a numeric value and if it falls within the range of 1000 to 9999,
-     * which covers all valid 4-digit years. If both conditions are met, the function returns true;
-     * otherwise, it returns false.
+     * This function checks if the year is within the valid range.
      *
-     * @param  int  $input  The input to be validated.
-     * @return bool Returns true if the input is a valid year, false otherwise.
+     * @param  int  $year  The year to be checked.
+     * @return bool True if the year is valid, false otherwise.
      */
-    public function isValidYear(int $input)
+    public function isValidYear(int $year): bool
     {
-        // Check if the input is a numeric value
-        if (is_numeric($input)) {
-            // Convert the input to an integer
-            $year = intval($input);
-
-            // Check if the year is in the valid range
-            if ($year >= 1000 && $year <= 9999) {
-                return true;
-            }
+        $startYear = config('calendar-table.date_range.start_year', Carbon::now()->subYears(20)->year);
+        $endYear = config('calendar-table.date_range.end_year', Carbon::now()->addYears(20)->year);
+        if ($year >= $startYear && $year <= $endYear) {
+            return true;
         }
 
         return false;
     }
 
     /**
-     * Determines the season for a given date.
+     * Determine the season for a given date.
      *
-     * This function determines the season for a given date based on the start month of each season.
-     * The function iterates through the seasons array and returns the first season where the start month is less than or equal to the current month.
-     * If no season is found, the function returns 'Winter' as the default season.
+     * This function determines the season for a given date based on the start month of the season.
      *
      * @param  Carbon  $date  The date for which the season is to be determined.
      * @return string The season for the given date.
      */
     public function determineSeason(Carbon $date): string
     {
-        $seasons = config('calendar-table.seasons', [
-            'Spring' => 3,
-            'Summer' => 6,
-            'Autumn' => 9,
-            'Winter' => 12,
-        ]);
-
-        // Reverse the seasons array so we can find the first season where the start month is less than or equal to the current month
-        $seasons = array_reverse($seasons, true);
+        $seasons = array_reverse(config('calendar-table.seasons', $this->seasons), true);
 
         foreach ($seasons as $season => $startMonth) {
             if ($date->month >= $startMonth) {
@@ -210,12 +214,9 @@ class CalendarTableCommand extends Command
     }
 
     /**
-     * Determines the fiscal year and quarter for a given date.
+     * Determine the fiscal year and quarter for a given date.
      *
      * This function determines the fiscal year and quarter for a given date based on the start month of the fiscal year.
-     * The function calculates the fiscal year based on the month of the date and the start month of the fiscal year.
-     * If the month of the date is greater than or equal to the start month of the fiscal year, the fiscal year is incremented by 1.
-     * The fiscal quarter is calculated based on the month of the date and the start month of the fiscal year.
      *
      * @param  Carbon  $date  The date for which the fiscal year and quarter are to be determined.
      * @return array An array containing the fiscal year and quarter for the given date.
@@ -225,7 +226,7 @@ class CalendarTableCommand extends Command
         $fiscalYear = $date->year;
         $fiscalQuarter = ceil($date->month / 3);
 
-        $fiscalYearStartMonth = config('calendar-table.fiscal_year_start_month', 10);
+        $fiscalYearStartMonth = config('calendar-table.fiscal_year_start_month', $this->fiscalYearStartMonth);
         if ($date->month >= $fiscalYearStartMonth) {
             $fiscalYear++;
             $fiscalQuarter = ceil(($date->month - $fiscalYearStartMonth + 1) / 3);

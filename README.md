@@ -50,8 +50,78 @@ The calendar table command accepts two optional parameters. If no **start** year
 > Note: If the table has been pre-filled you will be given the option to truncate.
 
 ```
-php artisan calendar:table --start=1990 --end=2030
+php artisan calendar:table --start=2000 --end=2030
 ```
+
+Sure, here's a README.md section that explains the configuration options for your Laravel Calendar Table package:
+
+## Configuration
+
+The Laravel Calendar Table package provides several configuration options that you can adjust to suit your needs. You can find these options in the `config.php` file.
+
+### Table Name
+
+The `table_name` option allows you to define a custom table name for the database records. By default, it is set to `'date_dimension'`.
+
+```php
+'table_name' => 'date_dimension',
+```
+
+### Seasons
+
+The `seasons` array allows you to define the start month for each season. By default, it is configured for the meteorological seasons of the Northern Hemisphere:
+
+- Spring starts in March
+- Summer starts in June
+- Autumn starts in September
+- Winter starts in December
+
+If you are in the Southern Hemisphere, you should reconfigure the seasons to start approximately six months later:
+
+- Spring starts in September
+- Summer starts in December
+- Autumn starts in March
+- Winter starts in June
+
+```php
+'seasons' => [
+    'Spring' => 3,
+    'Summer' => 6,
+    'Autumn' => 9,
+    'Winter' => 12,
+],
+```
+
+### Fiscal Year Start Month
+
+The `fiscal_year_start_month` option allows you to define the start month of the fiscal year. The value should be an integer between 1 (January) and 12 (December). By default, it is set to 10, meaning the fiscal year starts in October. Adjust this setting to match your own fiscal year.
+
+```php
+'fiscal_year_start_month' => 10,
+```
+
+### Date Range
+
+The `date_range` array allows you to define the max start and end year range for populating the calendar table. 
+
+- `start_year`: This option defines the earliest year for the calendar table. Defaults to 20 years before the current year. 
+
+- `end_year`: This option defines the latest year for the calendar table. Defaults to 20 years after the current year.
+
+```php
+'date_range' => [
+    'start_year' => Carbon\Carbon::now()->subYears(20)->year,
+    'end_year' => Carbon\Carbon::now()->addYears(20)->year,
+],
+```
+
+## Requirements
+
+The package is compatible with Laravel 10 or later.
+
+## Support
+
+If you have any issues or questions please send a pull request.
 
 ## License
 
