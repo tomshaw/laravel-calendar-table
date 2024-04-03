@@ -69,12 +69,21 @@ The `table_name` option allows you to define a custom table name for the databas
 
 ### Seasons
 
-The `seasons` array allows you to define the start month for each season. By default, it is configured for the meteorological seasons of the Northern Hemisphere:
+The `seasons` array allows you to define the start month for each season. By default it is configured for the meteorological seasons of the Northern Hemisphere:
 
 - Spring starts in March
 - Summer starts in June
 - Autumn starts in September
 - Winter starts in December
+
+```php
+'seasons' => [
+    'Spring' => 3,
+    'Summer' => 6,
+    'Autumn' => 9,
+    'Winter' => 12,
+],
+```
 
 If you are in the Southern Hemisphere, you should reconfigure the seasons to start approximately six months later:
 
@@ -85,10 +94,10 @@ If you are in the Southern Hemisphere, you should reconfigure the seasons to sta
 
 ```php
 'seasons' => [
-    'Spring' => 3,
-    'Summer' => 6,
-    'Autumn' => 9,
-    'Winter' => 12,
+    'Spring' => 9,
+    'Summer' => 12,
+    'Autumn' => 3,
+    'Winter' => 6,
 ],
 ```
 
