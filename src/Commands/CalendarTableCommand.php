@@ -120,7 +120,6 @@ class CalendarTableCommand extends Command
      *
      * This method will truncate the table.
      *
-     *
      * @throws \Illuminate\Database\QueryException If there is an error with the query.
      */
     public function truncate(): void
