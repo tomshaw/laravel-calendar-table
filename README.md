@@ -104,9 +104,9 @@ The `fiscal_year_start_month` option allows you to define the start month of the
 
 The `date_range` array allows you to define the valid start and end year range for populating the calendar table. 
 
-- `start_year`: This option defines the start year for the calendar table. Defaults to 20 years before the current year. 
+- `start_year`: This option defines the earliest start year. Defaults to 20 years before the current year. 
 
-- `end_year`: This option defines the end year for the calendar table. Defaults to 20 years after the current year.
+- `end_year`: This option defines the latest end year. Defaults to 20 years after the current year.
 
 ```php
 'date_range' => [
