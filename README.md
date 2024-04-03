@@ -94,7 +94,7 @@ If you are in the Southern Hemisphere, you should reconfigure the seasons to sta
 
 ### Fiscal Year Start Month
 
-The `fiscal_year_start_month` option allows you to define the start month of the fiscal year. The value should be an integer between 1 (January) and 12 (December). By default, it is set to 10, meaning the fiscal year starts in October. Adjust this setting to match your own fiscal year.
+The `fiscal_year_start_month` option allows you to define the start month of the fiscal year. The value should be an integer between 1 (January) and 12 (December). By default, it is set to 10, meaning the fiscal year starts in October.
 
 ```php
 'fiscal_year_start_month' => 10,
