@@ -16,7 +16,7 @@ class CommandTest extends TestCase
 
     protected int $endYear;
 
-    public function setup(): void
+    protected function setup(): void
     {
         parent::setUp();
 

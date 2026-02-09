@@ -37,6 +37,8 @@ class CalendarTableCommand extends Command
 
     /**
      * The seasons start month array.
+     *
+     * @var array<string, int>
      */
     protected array $seasons = [
         'Spring' => 3,
@@ -218,7 +220,7 @@ class CalendarTableCommand extends Command
      * This function determines the fiscal year and quarter for a given date based on the start month of the fiscal year.
      *
      * @param  Carbon  $date  The date for which the fiscal year and quarter are to be determined.
-     * @return array An array containing the fiscal year and quarter for the given date.
+     * @return array{fiscal_year: int, fiscal_quarter: float|int} An array containing the fiscal year and quarter for the given date.
      */
     public function fiscalYearQuarter(Carbon $date): array
     {
