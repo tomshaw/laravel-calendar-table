@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/tomshaw/laravel-calendar-table/compare/v0.4.0...v0.4.1) (2026-02-09)
+
+
+### Bug Fixes
+
+* clean up PHPStan configuration and enhance type annotations in CalendarTableCommand ([9ba83a3](https://github.com/tomshaw/laravel-calendar-table/commit/9ba83a311ba1698202ee329acd07c02ce394602a))
+
 ## [0.4.0](https://github.com/tomshaw/laravel-calendar-table/compare/v0.3.0...v0.4.0) (2026-02-09)
 
 
