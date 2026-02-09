@@ -10,13 +10,11 @@ jobs:
       fail-fast: true
       matrix:
         os: [ ubuntu-latest ]
-        php: [ 8.1 ]
-        laravel: [ 10.* ]
+        php: [ 8.3, 8.4, 8.5 ]
+        laravel: [ 12.* ]
+        testbench: [ 10.* ]
+        larastan: [ ^3.0 ]
         dependency-version: [ prefer-stable ]
-        include:
-          - laravel: 10.*
-            testbench: 8.*
-            larastan: ^2.0
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
@@ -37,4 +35,4 @@ jobs:
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Execute tests
-        run: vendor/bin/phpunit
+        run: vendor/bin/pest
