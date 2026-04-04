@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/tomshaw/laravel-calendar-table/compare/v0.4.1...v0.5.0) (2026-04-04)
+
+
+### Features
+
+* update GitHub workflows and dependencies for PHP 8.5 and Laravel 13 support ([3cb561c](https://github.com/tomshaw/laravel-calendar-table/commit/3cb561c14a16567d09b926929c059352e2cfdd9d))
+
 ## [0.4.1](https://github.com/tomshaw/laravel-calendar-table/compare/v0.4.0...v0.4.1) (2026-02-09)
 
 
