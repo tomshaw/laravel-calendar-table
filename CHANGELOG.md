@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/tomshaw/laravel-calendar-table/compare/v0.5.0...v0.5.1) (2026-04-04)
+
+
+### Bug Fixes
+
+* update checkout action ref to support branch names in GitHub workflows ([7066d0c](https://github.com/tomshaw/laravel-calendar-table/commit/7066d0ce9ac329defe45a39df20a44bd9abc1423))
+
 ## [0.5.0](https://github.com/tomshaw/laravel-calendar-table/compare/v0.4.1...v0.5.0) (2026-04-04)
 
 
