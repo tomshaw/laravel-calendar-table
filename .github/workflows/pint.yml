@@ -15,13 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-<<<<<<< HEAD
-        uses: actions/checkout@v5
-        with:
-          ref: ${{ github.head_ref }}
-=======
         uses: actions/checkout@v6
->>>>>>> e35d119ae557fb5cfdc5361b26508dcecc27c7a0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2

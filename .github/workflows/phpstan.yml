@@ -13,11 +13,7 @@ jobs:
     name: phpstan
     runs-on: ubuntu-latest
     steps:
-<<<<<<< HEAD
-      - uses: actions/checkout@v5
-=======
       - uses: actions/checkout@v6
->>>>>>> e35d119ae557fb5cfdc5361b26508dcecc27c7a0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2

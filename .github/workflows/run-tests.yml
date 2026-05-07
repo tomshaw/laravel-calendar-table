@@ -15,11 +15,6 @@ jobs:
         os: [ ubuntu-latest ]
         php: [ 8.5 ]
         laravel: [ 13.* ]
-<<<<<<< HEAD
-        testbench: [ 11.* ]
-        larastan: [ ^3.9 ]
-=======
->>>>>>> e35d119ae557fb5cfdc5361b26508dcecc27c7a0
         dependency-version: [ prefer-stable ]
         include:
           - laravel: 13.*
@@ -30,11 +25,7 @@ jobs:
 
     steps:
       - name: Checkout code
-<<<<<<< HEAD
-        uses: actions/checkout@v5
-=======
         uses: actions/checkout@v6
->>>>>>> e35d119ae557fb5cfdc5361b26508dcecc27c7a0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
