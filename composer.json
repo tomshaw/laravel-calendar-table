@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^8.5",
+<<<<<<< HEAD
         "geoffreyrose/us-holidays": "^2.9",
         "illuminate/console": "^13.0",
         "illuminate/database": "^13.0",
@@ -28,6 +29,16 @@
         "nunomaduro/collision": "^8.9",
         "orchestra/testbench": "^11.0",
         "pestphp/pest": "^4.7"
+=======
+        "geoffreyrose/us-holidays": "^2.5"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.25",
+        "nunomaduro/collision": "^8.0",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^3.0|^4.0"
+>>>>>>> e35d119ae557fb5cfdc5361b26508dcecc27c7a0
     },
     "autoload": {
         "psr-4": {

@@ -1,12 +1,13 @@
 name: Code Linting
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - '**.php'
-
-permissions:
-  contents: write
+  pull_request:
+    paths:
+      - '**.php'
 
 jobs:
   php-code-linting:
@@ -14,14 +15,22 @@ jobs:
 
     steps:
       - name: Checkout code
+<<<<<<< HEAD
         uses: actions/checkout@v5
         with:
           ref: ${{ github.head_ref }}
+=======
+        uses: actions/checkout@v6
+>>>>>>> e35d119ae557fb5cfdc5361b26508dcecc27c7a0
 
-      - name: Fix code linting issues
-        uses: aglipanci/laravel-pint-action@2.4
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          commit_message: Fix linting
+          php-version: '8.5'
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Run Pint
+        run: vendor/bin/pint --test

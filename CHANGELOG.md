@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.6.0](https://github.com/tomshaw/laravel-calendar-table/compare/v0.5.1...v0.6.0) (2026-04-04)
+
+
+### Features
+
+* standardize CI workflows and update dependencies for Laravel 13 ([d376dfc](https://github.com/tomshaw/laravel-calendar-table/commit/d376dfccf736b7080721787e2077854357fcb58f))
+
+## [0.5.1](https://github.com/tomshaw/laravel-calendar-table/compare/v0.5.0...v0.5.1) (2026-04-04)
+
+
+### Bug Fixes
+
+* update checkout action ref to support branch names in GitHub workflows ([7066d0c](https://github.com/tomshaw/laravel-calendar-table/commit/7066d0ce9ac329defe45a39df20a44bd9abc1423))
+
+## [0.5.0](https://github.com/tomshaw/laravel-calendar-table/compare/v0.4.1...v0.5.0) (2026-04-04)
+
+
+### Features
+
+* update GitHub workflows and dependencies for PHP 8.5 and Laravel 13 support ([3cb561c](https://github.com/tomshaw/laravel-calendar-table/commit/3cb561c14a16567d09b926929c059352e2cfdd9d))
+
 ## [0.4.1](https://github.com/tomshaw/laravel-calendar-table/compare/v0.4.0...v0.4.1) (2026-02-09)
 
 
