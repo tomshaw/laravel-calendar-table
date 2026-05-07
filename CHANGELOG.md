@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.7.0](https://github.com/tomshaw/laravel-calendar-table/compare/v0.6.0...v0.7.0) (2026-05-07)
+
+
+### Features
+
+* 🚀 upgrade to Laravel 13 and PHP 8.5 ([4526a0e](https://github.com/tomshaw/laravel-calendar-table/commit/4526a0e51a35ee1634d43eb889f73efe4eb4d6a0))
+* 🚀 upgrade to Laravel 13 and PHP 8.5 ([743aae8](https://github.com/tomshaw/laravel-calendar-table/commit/743aae849e26b82401c0fca525948dd8cd2cbbcb))
+* 🚀 upgrade to Laravel 13 and PHP 8.5 ([0a4f871](https://github.com/tomshaw/laravel-calendar-table/commit/0a4f871392569d365906f32dae2365221bf81ae6))
+* 🚀 upgrade to Laravel 13 and PHP 8.5 ([5426990](https://github.com/tomshaw/laravel-calendar-table/commit/5426990d53bf62023ec60dd08ee70205ea55d498))
+* 🚀 upgrade to Laravel 13 and PHP 8.5 ([4b1de9a](https://github.com/tomshaw/laravel-calendar-table/commit/4b1de9abe3d582755a89b315840b7539f1210c1d))
+* apply pint code style fixes and update linting workflow ([348dea4](https://github.com/tomshaw/laravel-calendar-table/commit/348dea4d6685bbdb14cb4daf06eaec47a0598309))
+* fix pint workflow to use project config and revert incorrect style changes ([eff40f5](https://github.com/tomshaw/laravel-calendar-table/commit/eff40f562c665d5c9a1dd4f7c053d28a2effe9a4))
+* use project pint version in CI instead of external action ([e35d119](https://github.com/tomshaw/laravel-calendar-table/commit/e35d119ae557fb5cfdc5361b26508dcecc27c7a0))
+
+
+### Bug Fixes
+
+* update exception type in truncate method documentation ([64cbd3b](https://github.com/tomshaw/laravel-calendar-table/commit/64cbd3b3b5321093e4fcf5542ba7271dd4018a76))
+
 ## [0.6.0](https://github.com/tomshaw/laravel-calendar-table/compare/v0.5.1...v0.6.0) (2026-04-04)
 
 
