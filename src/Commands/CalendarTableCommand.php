@@ -3,6 +3,7 @@
 namespace TomShaw\CalendarTable\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use USHolidays\Carbon;
 
@@ -122,7 +123,7 @@ class CalendarTableCommand extends Command
      *
      * This method will truncate the table.
      *
-     * @throws \Illuminate\Database\QueryException If there is an error with the query.
+     * @throws QueryException If there is an error with the query.
      */
     public function truncate(): void
     {
