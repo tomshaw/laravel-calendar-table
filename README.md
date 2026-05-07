@@ -126,7 +126,8 @@ The `date_range` array allows you to define the valid start and end year range f
 
 ## Requirements
 
-The package is compatible with Laravel 10 or later.
+- PHP 8.5 or later
+- Laravel 13.0 or later
 
 ## Support
 

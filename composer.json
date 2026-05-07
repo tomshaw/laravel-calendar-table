@@ -11,20 +11,23 @@
     "authors": [
         {
             "name": "Tom Shaw",
-            "email": "tomshaw@tomshaw.us",
+            "email": "tomshaw@users.noreply.github.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.3|^8.4|^8.5",
-        "geoffreyrose/us-holidays": "^2.5"
+        "php": "^8.5",
+        "geoffreyrose/us-holidays": "^2.9",
+        "illuminate/console": "^13.0",
+        "illuminate/database": "^13.0",
+        "illuminate/support": "^13.0"
     },
     "require-dev": {
-        "larastan/larastan": "^3.0",
-        "laravel/pint": "^1.25",
-        "nunomaduro/collision": "^8.8",
-        "orchestra/testbench": "^10.0",
-        "pestphp/pest": "^4.0"
+        "larastan/larastan": "^3.9",
+        "laravel/pint": "^1.29",
+        "nunomaduro/collision": "^8.9",
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^4.7"
     },
     "autoload": {
         "psr-4": {
