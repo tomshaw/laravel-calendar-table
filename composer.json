@@ -1,12 +1,11 @@
 {
-    "name": "tomshaw/google-api",
-    "description": "A Laravel Google API Client.",
+    "name": "tomshaw/laravel-calendar-table",
+    "description": "A Laravel calendar table database migration and console command.",
     "keywords": [
-        "google",
         "laravel",
-        "google-api",
-        "google-client",
-        "api-client"
+        "console",
+        "artisan",
+        "command"
     ],
     "license": "MIT",
     "authors": [
@@ -18,48 +17,51 @@
     ],
     "require": {
         "php": "^8.5",
-        "google/apiclient": "^2.18",
-        "illuminate/session": "^13.0"
+        "geoffreyrose/us-holidays": "^2.9",
+        "illuminate/console": "^13.0",
+        "illuminate/database": "^13.0",
+        "illuminate/support": "^13.0"
     },
     "require-dev": {
-        "larastan/larastan": "^3.0",
-        "laravel/pint": "^1.10|^2.0",
-        "mockery/mockery": "^1.6.10|^2.0",
-        "nunomaduro/collision": "^8.0",
+        "larastan/larastan": "^3.9",
+        "laravel/pint": "^1.29",
+        "nunomaduro/collision": "^8.9",
         "orchestra/testbench": "^11.0",
-        "pestphp/pest": "^3.0|^4.0",
-        "phpstan/phpstan": "^2.0"
+        "pestphp/pest": "^4.7"
     },
     "autoload": {
         "psr-4": {
-            "TomShaw\\GoogleApi\\": "src"
+            "TomShaw\\CalendarTable\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "TomShaw\\GoogleApi\\Tests\\": "tests"
+            "TomShaw\\CalendarTable\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "analyse": "vendor/bin/phpstan analyse",
+        "analyse": "vendor/bin/phpstan analyse --ansi --memory-limit=-1",
         "baseline": "vendor/bin/phpstan analyse --ansi --memory-limit=-1 --generate-baseline --allow-empty-baseline",
+        "format": "vendor/bin/pint --config pint.json",
         "test": "vendor/bin/pest",
-        "format": "vendor/bin/pint --config pint.json"
+        "test-coverage": "vendor/bin/pest --coverage"
+    },
+    "suggest": {
+        "geoffreyrose/us-holidays": "Extends Carbon and adds support for 42 US holidays."
     },
     "extra": {
         "laravel": {
             "providers": [
-                "TomShaw\\GoogleApi\\Providers\\GoogleApiServiceProvider"
+                "TomShaw\\CalendarTable\\Providers\\CalendarTableServiceProvider"
             ]
         }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
+        "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
-        },
-        "sort-packages": true,
-        "process-timeout": 600
+        }
     }
 }

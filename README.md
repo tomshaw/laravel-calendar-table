@@ -6,11 +6,6 @@
 ![stars](https://img.shields.io/github/stars/tomshaw/laravel-calendar-table?style=flat&logo=appveyor)
 [![GitHub license](https://img.shields.io/github/license/tomshaw/laravel-calendar-table)](https://github.com/tomshaw/laravel-calendar-table/blob/master/LICENSE)
 
-## Requirements
-
-- PHP ^8.3
-- Laravel ^12.0 | ^13.0
-
 A **calendar table**, also known as a **date dimension table**, is a table in a database that is designed to help with date-related queries and reporting. It contains a row for each date within a certain range, often many years into the past and future. Each row contains various fields about the date, such as the day, month, year, quarter, day of the week, is it a weekend or a weekday, is it a holiday, etc.
 
 The usefulness of a calendar table in database reporting comes from its ability to simplify and optimize date-related queries. Here are some of its benefits:
